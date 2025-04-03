@@ -7,8 +7,14 @@ const GET_SINGLE_USERS = async (req , res) => {
         // 2. Байрыг шүүх
         const user = await prisma.users.findUnique({
             include:{
-                lottery_race_winners:true,
-                lottery_users:true
+                lottery_race_winners: {
+                    include: 
+                    {
+                        lottery_race_prizes:true
+                    }
+                },
+                lottery_users:true,
+                
             },
             where:{
                 id:parseInt(req.user.id)
