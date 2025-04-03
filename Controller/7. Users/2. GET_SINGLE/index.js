@@ -22,7 +22,11 @@ const GET_SINGLE_USERS = async (req , res) => {
                         }
                     }
                 },
-                lottery_users:true,
+                lottery_users:{
+                    include: {
+                        lottery_lottery_users_lotteryTolottery:true
+                    }
+                },
                 
             },
             where:{
