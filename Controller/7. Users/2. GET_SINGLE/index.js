@@ -10,7 +10,13 @@ const GET_SINGLE_USERS = async (req , res) => {
                 lottery_race_winners: {
                     include: 
                     {
-                        lottery_race_prizes:true
+                        lottery_race_prizes:{
+                            include: {
+                                lottery_races:{
+                                    lottery_lottery_races_lotteryTolottery:true
+                                }
+                            }
+                        }
                     }
                 },
                 lottery_users:true,
