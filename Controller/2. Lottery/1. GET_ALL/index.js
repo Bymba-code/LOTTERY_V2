@@ -44,6 +44,9 @@ const GET_ALL_LOTTERY = async (req , res) => {
                         }
                         
                     }
+                },
+                orderBy: {
+                    start_date: "asc"
                 }
             })
         }
@@ -79,6 +82,9 @@ const GET_ALL_LOTTERY = async (req , res) => {
                         }
                         
                     }
+                },
+                orderBy: {
+                    start_date: "asc"
                 }
 
             })
