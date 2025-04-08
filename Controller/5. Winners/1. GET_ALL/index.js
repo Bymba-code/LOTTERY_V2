@@ -9,20 +9,38 @@ const GET_ALL_WINNERS = async (req, res) => {
 
         let winners;
 
-        if (!page || !size) 
+        if (!page && !size) 
         {
-            winners = await prisma.lottery_race_winners.findMany({
+            const winners = await prisma.lottery_race_winners.findMany({
                 include: {
-                    users: true,
+                  users: true,
+                  lottery_race_prizes: {
+                    include: {
+                      lottery_races: {
+                        include: {
+                          lottery_lottery_races_lotteryTolottery: true,
+                        },
+                      },
+                    },
+                  },
                 },
-            });
+              });
         } 
 
         if(!page && !size && user)
         {
             winners = await prisma.lottery_race_winners.findMany({
                 include:{
-                    users:true
+                    users:true,
+                    lottery_race_prizes: {
+                        include: {
+                          lottery_races: {
+                            include: {
+                              lottery_lottery_races_lotteryTolottery: true,
+                            },
+                          },
+                        },
+                      },
                 },
                 where:{
                     user:parseInt(user)
@@ -37,6 +55,15 @@ const GET_ALL_WINNERS = async (req, res) => {
                 take: take,
                 include: {
                     users: true,
+                    lottery_race_prizes: {
+                        include: {
+                          lottery_races: {
+                            include: {
+                              lottery_lottery_races_lotteryTolottery: true,
+                            },
+                          },
+                        },
+                      },
                 },
             });
         }
