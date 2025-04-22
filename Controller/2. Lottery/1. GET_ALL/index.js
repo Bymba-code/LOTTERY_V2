@@ -22,7 +22,11 @@ const GET_ALL_LOTTERY = async (req , res) => {
                       include: {
                         lottery_race_prizes: {
                             include: {
-                                lottery_race_winners:true
+                                lottery_race_winners:{
+                                    include: {
+                                        users:true
+                                    }
+                                }
                             }
                         } 
                       }
@@ -60,7 +64,9 @@ const GET_ALL_LOTTERY = async (req , res) => {
                       include: {
                         lottery_race_prizes: {
                             include: {
-                                lottery_race_winners:true
+                                lottery_race_winners:{
+                                    users:true
+                                }
                             }
                         } 
                       }
