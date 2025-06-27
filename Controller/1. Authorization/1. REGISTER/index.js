@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt")
 const REGISTER = async (req , res) => {
     try 
     {   
-        const {firstName, lastName, phone, password} = req.body;
+        const {firstName, lastName, phone, password, fcmToken} = req.body;
 
         // 1. Талбар шалгах
         if(!firstName)
@@ -70,6 +70,7 @@ const REGISTER = async (req , res) => {
                 lastname: lastName,
                 phone: phone,
                 password: hashedPassword,
+                token: fcmToken,
                 role: "user",
                 create_date: new Date()
             }
