@@ -57,6 +57,8 @@ const LOGIN = async (req , res) => {
             })
         }
 
+
+
         // 4. Токен бэлтгэх
 
         const token = jwt.sign(
@@ -65,6 +67,14 @@ const LOGIN = async (req , res) => {
             {expiresIn:"2h"}
         )
 
+        const updateFcmToken = await prisma.users.update({
+            where:{
+                id: parseInt(isUser[0].id)
+            },
+            data: {
+                token: fcmToken,
+            }
+        })
         // 5. Хариу 
 
         return res.status(200).json({
