@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken")
 const LOGIN = async (req , res) => {
     try 
     {
-        const {phone, password} = req.body;
+        const {phone, password, fcmToken} = req.body;
 
         // 1. Талбар шалгах
         if(!phone)
